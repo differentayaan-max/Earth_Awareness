@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Environmental Awareness</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-image: url("earth.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        header {
+            background-color: rgba(46, 125, 50, 0.95);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: rgba(27, 94, 32, 0.95);
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover { text-decoration: underline; }
+
+        section {
+            padding: 20px;
+            max-width: 900px;
+            margin: 20px auto;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        section.visible { opacity: 1; transform: translateY(0); }
+
+        h2 { color: #2e7d32; margin-bottom: 10px; }
+
+        #count { font-size: 32px; color: #1b5e20; margin: 10px 0; }
+
+        button {
+            background-color: #43a047;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2e7d32;
+            transform: scale(1.1);
+        }
+
+        ul { margin-left: 20px; list-style-type: disc; }
+
+        footer {
+            background-color: rgba(27, 94, 32, 0.95);
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .motive-link {
+            color: #43a047;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Save Environment</h1>
+    <p> Awareness Website</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#problems">Problems</a>
+    <a href="#solutions">Solutions</a>
+    <a href="#seemotives">See Motives</a>
+    <a href="#pledge">Pledge</a>
+</nav>
+
+<section id="home">
+    <h2>About This Project</h2>
+    <p>
+        This website is created as a school project to spread awareness
+        about protecting the environment using HTML, CSS, and JavaScript.
+    </p>
+</section>
+
+<section id="problems">
+    <h2>Environmental Problems</h2>
+    <ul>
+        <li>Air Pollution</li>
+        <li>Water Pollution</li>
+        <li>Global Warming</li>
+        <li>Deforestation</li>
+    </ul>
+</section>
+
+<section id="solutions">
+    <h2>Solutions</h2>
+    <ul>
+        <li>Plant more trees</li>
+        <li>Save electricity and water</li>
+        <li>Reduce plastic usage</li>
+        <li>Use eco-friendly products</li>
+    </ul>
+</section>
+
+<!-- See Motives Section -->
+<section id="seemotives">
+    <h2>Environmental Motives</h2>
+    <p>Here are some simple ways to protect our Earth:</p>
+    <ul>
+        <li>Plant trees to increase oxygen and reduce carbon dioxide.</li>
+        <li>Reduce plastic usage to prevent pollution in oceans and rivers.</li>
+        <li>Save electricity to reduce carbon footprint.</li>
+        <li>Save water to ensure sustainable resources for the future.</li>
+        <li>Use eco-friendly products to minimize chemical harm to nature.</li>
+    </ul>
+    <p><span class="motive-link" onclick="location.href='motives.html'">See More</span></p>
+</section>
+
+
+<section id="pledge">
+    <h2>Take a Pledge</h2>
+    <p>People who have taken the pledge:</p>
+    <div id="count">0</div>
+    <button onclick="pledge()">Take Pledge</button>
+</section>
+
+<footer>
+    <p>Created by: Ayaan | Class: VI</p>
+</footer>
+
+<script>
+    // Fade-in sections
+    const sections = document.querySelectorAll('section');
+    function revealSections() {
+        const triggerBottom = window.innerHeight * 0.85;
+        sections.forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            if(sectionTop < triggerBottom) section.classList.add('visible');
+        });
+    }
+    window.addEventListener('scroll', revealSections);
+    window.addEventListener('load', revealSections);
+
+    // Animated pledge counter
+    let count = localStorage.getItem("pledgeCount");
+    if(count === null) count = 0;
+    else count = parseInt(count);
+    document.getElementById("count").innerText = count;
+
+    function pledge() {
+        const oldCount = count;
+        count++;
+        localStorage.setItem("pledgeCount", count);
+
+        let start = oldCount;
+        const end = count;
+        const duration = 350; // ms
+        const stepTime = Math.max(Math.floor(duration / (end - start)), 20);
+
+        const timer = setInterval(() => {
+            start++;
+            document.getElementById("count").innerText = start;
+            if(start >= end) clearInterval(timer);
+        }, stepTime);
+
+        alert("Thank you for taking the pledge!");
+    }
+</script>
+
+</body>
+</html>
