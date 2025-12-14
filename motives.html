@@ -14,7 +14,8 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: linear-gradient(to bottom, #e8f5e9, #ffffff);
+      background: url('earth.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: #2e3d2f;
       line-height: 1.6;
     }
@@ -41,6 +42,9 @@
       padding: 60px 20px;
       max-width: 1100px;
       margin: auto;
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(8px);
+      border-radius: 22px;
     }
 
     .card-grid {
@@ -51,11 +55,11 @@
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(6px);
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(10px);
       border-radius: 16px;
       padding: 25px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       transition: transform 0.3s ease;
     }
 
@@ -186,3 +190,4 @@
 
 </body>
 </html>
+
